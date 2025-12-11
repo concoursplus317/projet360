@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>ARTICLES </title>
+   
+    <style>
+        img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+        @media (max-width: 768px) {
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .menu {
+    flex-direction: column;
+  }
+}
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #fafafa;
+            
+        }
+        .post {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        img {
+            max-width: 300px;
+            display: block;
+            margin-top: 10px;
+            border-radius: 5px;
+            
+        }
+        *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: century;
+}
+
+ 
+   
+   
+   
+
+.Logo a{
+    color: #fff;
+    padding: 0px 20px;
+    border: 1px solid #fff;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 900;
+
+}
+
+
+.Logo span{
+    color: rgb(231, 255, 16);
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+ul{
+    list-style: none;
+    float: right;
+    display: flex;
+    margin-top: 20px;
+}
+
+ul li a{
+text-decoration: none;
+color: #f3ecec;
+background-color: #000;
+padding: 10px 20px ;
+text-transform: uppercase;
+border: 1px solid transparent;
+margin: 10px; ;
+font-weight: 500;
+transition: 0.3s ease;
+}
+
+ul li a:hover{
+    background: #0c0202;
+    color: red;
+}
+
+ul li.active a{
+    background-color: #fff;
+    color: #000;
+}
+
+.principale{
+    max-width: 114rem;
+    margin: 0 auto;
+}
+
+
+
+    </style>
+</head>
+<body>
+   
+   <center> <h2>Articles diponibles </h2></center>
+    <div id="zonePublications"></div>
+    <script>
+        const zone = document.getElementById("zonePublications");
+        const publications = JSON.parse(localStorage.getItem("publications")) || [];
+
+        if (publications.length === 0) {
+            zone.innerHTML = "<p>Aucune publication pour l’instant.</p>";
+        } else {
+            publications.forEach(pub => {
+                const div = document.createElement("div");
+                div.classList.add("post");
+                div.innerHTML = `
+                    <p>${pub.texte}</p>
+                    ${pub.image ? `<img src="${pub.image}" alt="Image">` : ""}
+                `;
+                zone.appendChild(div);
+            });
+        }
+    </script>
+</body>
+</html>

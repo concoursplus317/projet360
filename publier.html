@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Publier</title>
+    <style>
+        input, textarea, button {
+            display: block;
+            width: 10%;
+            margin-bottom: 5px;
+            padding: 8px;
+        }
+        .preview {
+            margin-top: 20px;
+            max-width: 400px;
+padding: 100px;
+        }
+        .post {
+           background-color: rgb(247, 247, 234);
+           box-shadow: black;
+            border-radius: 50px;
+        }
+        .delete-btn {
+            background: crimson;
+            color: white;
+            border: none;
+          
+            border-radius: 5px;
+        }
+        @media (max-width: 768px) {
+  h1 {
+    font-size: 1.5em;
+  }
+
+  .menu {
+    flex-direction: column;
+  }
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Publier une photo et du texte</h1>
+
+    <form id="formPublication">
+        <textarea id="texte" placeholder="Écris ton texte ici..." required></textarea>
+        <input type="file" id="image" accept="image/*">
+        <button type="submit">Publier</button>
+    </form>
+    
+    <h2>Mes publications</h2>
+    <div id="publications"></div>
+
+    <p><a href="afficher.html">➡ Voir la page d'acceuil</a></p>
+
+    <script>
+        const form = document.getElementById("formPublication");
+        const publicationsDiv = document.getElementById("publications");
+
+        // Charger les publications depuis le localStorage
+        let publications = JSON.parse(localStorage.getItem("publications")) || [];
+
+        // Fonction d'affichage
+        function afficherPublications() {
+            publicationsDiv.innerHTML = "";
+            publications.forEach((pub, index) => {
+                const div = document.createElement("div");
+                div.classList.add("post");
+                div.innerHTML = `
+                    <p>${pub.texte}</p>
+                    ${pub.image ? `<img src="${pub.image}" class="preview">` : ""}
+                    <button class="delete-btn" onclick="supprimer(${index})">Supprimer</button>
+                `;
+                publicationsDiv.appendChild(div);
+            });
+        }
+
+        // Supprimer une publication
+        function supprimer(index) {
+            publications.splice(index, 1);
+            localStorage.setItem("publications", JSON.stringify(publications));
+            afficherPublications();
+        }
+
+        // Publier une nouvelle publication
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const texte = document.getElementById("texte").value;
+            const imageInput = document.getElementById("image").files[0];
+
+            if (!texte.trim()) return alert("Le texte ne peut pas être vide.");
+
+            if (imageInput) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    publications.push({ texte, image: reader.result });
+                    localStorage.setItem("publications", JSON.stringify(publications));
+                    afficherPublications();
+                    form.reset();
+                };
+                reader.readAsDataURL(imageInput);
+            } else {
+                publications.push({ texte, image: "" });
+                localStorage.setItem("publications", JSON.stringify(publications));
+                afficherPublications();
+                form.reset();
+            }
+        });
+        
+        afficherPublications();
+    </script>
+</body>
+</html>
