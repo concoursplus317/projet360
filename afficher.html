@@ -2,141 +2,756 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>ARTICLES </title>
-   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionnaire de Codes GitHub</title>
     <style>
-        img {
-  max-width: 100%;
-  height: auto;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: auto;
-}
-
-        @media (max-width: 768px) {
-  h1 {
-    font-size: 1.5em;
-  }
-
-  .menu {
-    flex-direction: column;
-  }
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            background: #fafafa;
-            
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
         }
-        .post {
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
             background: white;
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
         }
-        img {
-            max-width: 300px;
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .header h1 i {
+            font-size: 2.5rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            color: #2c3e50;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #3498db;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        label {
             display: block;
-            margin-top: 10px;
-            border-radius: 5px;
-            
+            margin-bottom: 8px;
+            color: #34495e;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
-        *{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: century;
-}
 
- 
-   
-   
-   
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
 
-.Logo a{
-    color: #fff;
-    padding: 0px 20px;
-    border: 1px solid #fff;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    text-transform: uppercase;
-    text-decoration: none;
-    font-weight: 900;
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        textarea:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
 
-}
+        textarea {
+            min-height: 150px;
+            resize: vertical;
+            font-family: 'Courier New', monospace;
+        }
 
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
 
-.Logo span{
-    color: rgb(231, 255, 16);
-    font-weight: bold;
-    font-size: 2rem;
-}
+        button {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-ul{
-    list-style: none;
-    float: right;
-    display: flex;
-    margin-top: 20px;
-}
+        .btn-primary {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+        }
 
-ul li a{
-text-decoration: none;
-color: #f3ecec;
-background-color: #000;
-padding: 10px 20px ;
-text-transform: uppercase;
-border: 1px solid transparent;
-margin: 10px; ;
-font-weight: 500;
-transition: 0.3s ease;
-}
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #1c5a7a 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
 
-ul li a:hover{
-    background: #0c0202;
-    color: red;
-}
+        .btn-secondary {
+            background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+            color: white;
+        }
 
-ul li.active a{
-    background-color: #fff;
-    color: #000;
-}
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, #27ae60 0%, #219653 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
 
-.principale{
-    max-width: 114rem;
-    margin: 0 auto;
-}
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+        }
 
+        .btn-danger:hover {
+            background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
 
+        .result-section {
+            margin-top: 25px;
+        }
 
+        .result-box {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            min-height: 100px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .code-part {
+            display: inline-block;
+            background: #3498db;
+            color: white;
+            padding: 8px 15px;
+            margin: 5px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .code-part:hover {
+            background: #2980b9;
+            transform: scale(1.05);
+        }
+
+        .duplicate-warning {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .duplicate-warning.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .duplicate-list {
+            margin-top: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 5px;
+            border: 1px solid #ffc107;
+        }
+
+        .duplicate-item {
+            padding: 8px;
+            margin: 5px 0;
+            background: #fff3cd;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #3498db;
+            margin: 10px 0;
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+            font-size: 1rem;
+        }
+
+        .history-section {
+            margin-top: 30px;
+        }
+
+        .history-list {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+            border-radius: 5px;
+            border-left: 4px solid #3498db;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .success-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #2ecc71;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: none;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-   
-   <center> <h2>Articles diponibles </h2></center>
-    <div id="zonePublications"></div>
-    <script>
-        const zone = document.getElementById("zonePublications");
-        const publications = JSON.parse(localStorage.getItem("publications")) || [];
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>
+                <i class="fas fa-code-branch"></i>
+                Gestionnaire de Codes GitHub
+            </h1>
+            <p>Séparez vos codes en parties et détectez les doublons facilement</p>
+        </div>
 
-        if (publications.length === 0) {
-            zone.innerHTML = "<p>Aucune publication pour l’instant.</p>";
-        } else {
-            publications.forEach(pub => {
-                const div = document.createElement("div");
-                div.classList.add("post");
-                div.innerHTML = `
-                    <p>${pub.texte}</p>
-                    ${pub.image ? `<img src="${pub.image}" alt="Image">` : ""}
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Section de saisie -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-edit"></i>
+                    Saisie des Codes
+                </h2>
+                
+                <div class="input-group">
+                    <label for="codeInput">
+                        <i class="fas fa-key"></i>
+                        Codes GitHub (un par ligne) :
+                    </label>
+                    <textarea id="codeInput" placeholder="Collez vos codes ici, un par ligne...
+Exemple: 
+WMT6HP3VJVED
+ABC123DEF456
+XYZ789GHI012"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label for="partLength">
+                        <i class="fas fa-ruler"></i>
+                        Nombre de caractères par partie :
+                    </label>
+                    <input type="number" id="partLength" value="3" min="1" max="10">
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-primary" onclick="separateCodes()">
+                        <i class="fas fa-cut"></i>
+                        Séparer les Codes
+                    </button>
+                    <button class="btn-secondary" onclick="checkDuplicates()">
+                        <i class="fas fa-search"></i>
+                        Vérifier les Doublons
+                    </button>
+                    <button class="btn-danger" onclick="clearAll()">
+                        <i class="fas fa-trash"></i>
+                        Tout Effacer
+                    </button>
+                </div>
+
+                <div class="input-group">
+                    <label for="singleCode">
+                        <i class="fas fa-barcode"></i>
+                        Code unique à tester :
+                    </label>
+                    <input type="text" id="singleCode" placeholder="Entrez un code unique...">
+                    <button class="btn-secondary" onclick="testSingleCode()" style="margin-top: 10px; width: 100%;">
+                        <i class="fas fa-vial"></i>
+                        Tester ce Code
+                    </button>
+                </div>
+            </div>
+
+            <!-- Section des résultats -->
+            <div class="section">
+                <h2 class="section-title">
+                    <i class="fas fa-chart-bar"></i>
+                    Résultats & Analyse
+                </h2>
+
+                <div class="result-section">
+                    <label>Résultats de la séparation :</label>
+                    <div class="result-box" id="resultBox">
+                        <!-- Les résultats apparaîtront ici -->
+                    </div>
+                </div>
+
+                <div class="duplicate-warning" id="duplicateWarning">
+                    <h3 style="color: #e74c3c;">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Doublons détectés !
+                    </h3>
+                    <div class="duplicate-list" id="duplicateList">
+                        <!-- Liste des doublons -->
+                    </div>
+                </div>
+
+                <!-- Statistiques -->
+                <div class="stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalCodes">0</div>
+                        <div class="stat-label">Codes analysés</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalParts">0</div>
+                        <div class="stat-label">Parties créées</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="duplicateCount">0</div>
+                        <div class="stat-label">Doublons trouvés</div>
+                    </div>
+                </div>
+
+                <!-- Historique -->
+                <div class="history-section">
+                    <h3 class="section-title">
+                        <i class="fas fa-history"></i>
+                        Historique récent
+                    </h3>
+                    <div class="history-list" id="historyList">
+                        <!-- Historique des opérations -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2024 Gestionnaire de Codes GitHub - Outil de séparation et détection de doublons</p>
+            <p style="margin-top: 10px; opacity: 0.8;">
+                <i class="fas fa-code"></i>
+                Développé avec HTML, CSS & JavaScript
+            </p>
+        </div>
+    </div>
+
+    <!-- Message de succès -->
+    <div class="success-message" id="successMessage">
+        <i class="fas fa-check-circle"></i>
+        <span id="messageText"></span>
+    </div>
+
+    <script>
+        // Variables globales
+        let codeHistory = [];
+        let allCodes = new Set();
+        let duplicateMap = new Map();
+
+        // Fonction pour afficher un message de succès
+        function showSuccessMessage(message) {
+            const messageBox = document.getElementById('successMessage');
+            const messageText = document.getElementById('messageText');
+            
+            messageText.textContent = message;
+            messageBox.style.display = 'block';
+            
+            setTimeout(() => {
+                messageBox.style.display = 'none';
+            }, 3000);
+        }
+
+        // Fonction pour nettoyer un code
+        function cleanCode(code) {
+            return code.trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+        }
+
+        // Fonction pour séparer un code en parties
+        function separateCode(code, partLength) {
+            const clean = cleanCode(code);
+            const parts = [];
+            
+            for (let i = 0; i < clean.length; i += parseInt(partLength)) {
+                parts.push(clean.substring(i, i + parseInt(partLength)));
+            }
+            
+            return {
+                original: code,
+                cleaned: clean,
+                parts: parts,
+                partLength: partLength
+            };
+        }
+
+        // Fonction principale de séparation des codes
+        function separateCodes() {
+            const codeInput = document.getElementById('codeInput').value;
+            const partLength = document.getElementById('partLength').value;
+            const resultBox = document.getElementById('resultBox');
+            
+            if (!codeInput.trim()) {
+                showSuccessMessage('Veuillez entrer des codes !');
+                return;
+            }
+            
+            // Nettoyer les codes
+            const codes = codeInput.split('\n')
+                .map(code => code.trim())
+                .filter(code => code.length > 0);
+            
+            // Réinitialiser
+            allCodes.clear();
+            duplicateMap.clear();
+            resultBox.innerHTML = '';
+            
+            // Traiter chaque code
+            let totalParts = 0;
+            codes.forEach((code, index) => {
+                const result = separateCode(code, partLength);
+                allCodes.add(result.cleaned);
+                
+                // Créer un élément pour ce code
+                const codeDiv = document.createElement('div');
+                codeDiv.className = 'history-item';
+                codeDiv.style.marginBottom = '15px';
+                codeDiv.innerHTML = `
+                    <div style="margin-bottom: 10px;">
+                        <strong>Code #${index + 1}:</strong>
+                        <span style="font-family: 'Courier New', monospace; background: #f1f1f1; padding: 2px 8px; border-radius: 4px;">
+                            ${result.original}
+                        </span>
+                        <small style="color: #7f8c8d; margin-left: 10px;">
+                            → ${result.cleaned}
+                        </small>
+                    </div>
+                    <div>
+                        <strong>Parties (${partLength} caractères) :</strong><br>
+                        ${result.parts.map(part => 
+                            `<span class="code-part">${part}</span>`
+                        ).join(' ')}
+                    </div>
                 `;
-                zone.appendChild(div);
+                
+                resultBox.appendChild(codeDiv);
+                totalParts += result.parts.length;
+            });
+            
+            // Mettre à jour les statistiques
+            document.getElementById('totalCodes').textContent = codes.length;
+            document.getElementById('totalParts').textContent = totalParts;
+            
+            // Ajouter à l'historique
+            addToHistory(`Séparation de ${codes.length} codes en parties de ${partLength} caractères`);
+            
+            showSuccessMessage(`${codes.length} codes séparés avec succès !`);
+        }
+
+        // Fonction pour vérifier les doublons
+        function checkDuplicates() {
+            const codeInput = document.getElementById('codeInput').value;
+            const warningBox = document.getElementById('duplicateWarning');
+            const duplicateList = document.getElementById('duplicateList');
+            
+            if (!codeInput.trim()) {
+                showSuccessMessage('Veuillez entrer des codes !');
+                return;
+            }
+            
+            // Nettoyer et regrouper les codes
+            const codes = codeInput.split('\n')
+                .map(code => cleanCode(code))
+                .filter(code => code.length > 0);
+            
+            // Trouver les doublons
+            const codeCount = {};
+            const duplicates = {};
+            
+            codes.forEach(code => {
+                codeCount[code] = (codeCount[code] || 0) + 1;
+            });
+            
+            // Filtrer les doublons
+            Object.keys(codeCount).forEach(code => {
+                if (codeCount[code] > 1) {
+                    duplicates[code] = codeCount[code];
+                }
+            });
+            
+            // Afficher les résultats
+            duplicateList.innerHTML = '';
+            
+            if (Object.keys(duplicates).length === 0) {
+                warningBox.classList.remove('show');
+                showSuccessMessage('Aucun doublon trouvé !');
+                document.getElementById('duplicateCount').textContent = '0';
+            } else {
+                warningBox.classList.add('show');
+                
+                Object.keys(duplicates).forEach(code => {
+                    const duplicateItem = document.createElement('div');
+                    duplicateItem.className = 'duplicate-item';
+                    duplicateItem.innerHTML = `
+                        <strong>${code}</strong>
+                        <span style="color: #e74c3c; margin-left: 10px;">
+                            (${duplicates[code]} occurrences)
+                        </span>
+                    `;
+                    duplicateList.appendChild(duplicateItem);
+                });
+                
+                document.getElementById('duplicateCount').textContent = Object.keys(duplicates).length;
+                showSuccessMessage(`${Object.keys(duplicates).length} doublon(s) trouvé(s) !`);
+            }
+            
+            addToHistory('Vérification des doublons effectuée');
+        }
+
+        // Fonction pour tester un code unique
+        function testSingleCode() {
+            const singleCode = document.getElementById('singleCode').value;
+            const partLength = document.getElementById('partLength').value;
+            
+            if (!singleCode.trim()) {
+                showSuccessMessage('Veuillez entrer un code à tester !');
+                return;
+            }
+            
+            const result = separateCode(singleCode, partLength);
+            const resultBox = document.getElementById('resultBox');
+            
+            resultBox.innerHTML = `
+                <div class="history-item">
+                    <h3 style="color: #3498db; margin-bottom: 15px;">
+                        <i class="fas fa-vial"></i>
+                        Test du code unique
+                    </h3>
+                    <div style="margin-bottom: 10px;">
+                        <strong>Code original :</strong>
+                        <span style="font-family: 'Courier New', monospace; background: #f1f1f1; padding: 5px 10px; border-radius: 5px;">
+                            ${result.original}
+                        </span>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <strong>Code nettoyé :</strong>
+                        <span style="font-family: 'Courier New', monospace; background: #3498db; color: white; padding: 5px 10px; border-radius: 5px;">
+                            ${result.cleaned}
+                        </span>
+                    </div>
+                    <div style="margin-bottom: 10px;">
+                        <strong>Longueur :</strong> ${result.cleaned.length} caractères
+                    </div>
+                    <div>
+                        <strong>Parties (${partLength} caractères) :</strong><br>
+                        ${result.parts.map(part => 
+                            `<span class="code-part">${part}</span>`
+                        ).join(' ')}
+                    </div>
+                </div>
+            `;
+            
+            addToHistory(`Test du code unique: ${singleCode}`);
+            showSuccessMessage('Code unique testé avec succès !');
+        }
+
+        // Fonction pour ajouter à l'historique
+        function addToHistory(action) {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('fr-FR', { 
+                hour: '2-digit', 
+                minute: '2-digit' 
+            });
+            
+            codeHistory.unshift({
+                action: action,
+                time: timeString
+            });
+            
+            // Garder seulement les 5 derniers éléments
+            if (codeHistory.length > 5) {
+                codeHistory.pop();
+            }
+            
+            updateHistoryDisplay();
+        }
+
+        // Fonction pour mettre à jour l'affichage de l'historique
+        function updateHistoryDisplay() {
+            const historyList = document.getElementById('historyList');
+            historyList.innerHTML = '';
+            
+            codeHistory.forEach(item => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                historyItem.innerHTML = `
+                    <div style="display: flex; justify-content: space-between;">
+                        <span>${item.action}</span>
+                        <small style="color: #7f8c8d;">${item.time}</small>
+                    </div>
+                `;
+                historyList.appendChild(historyItem);
             });
         }
+
+        // Fonction pour tout effacer
+        function clearAll() {
+            document.getElementById('codeInput').value = '';
+            document.getElementById('singleCode').value = '';
+            document.getElementById('resultBox').innerHTML = '';
+            document.getElementById('duplicateWarning').classList.remove('show');
+            document.getElementById('duplicateList').innerHTML = '';
+            
+            document.getElementById('totalCodes').textContent = '0';
+            document.getElementById('totalParts').textContent = '0';
+            document.getElementById('duplicateCount').textContent = '0';
+            
+            allCodes.clear();
+            duplicateMap.clear();
+            
+            addToHistory('Tous les champs ont été effacés');
+            showSuccessMessage('Tout a été effacé avec succès !');
+        }
+
+        // Exemple de codes pré-remplis
+        function loadExampleCodes() {
+            const exampleCodes = `WMT6HP3VJVED
+ABC123DEF456
+XYZ789GHI012
+WMT6HP3VJVED
+TEST123TEST456
+ABC123DEF456
+SAMPLE0001CODE
+DEMO987654321
+WMT6HP3VJVED
+FINALTEST00001`;
+            
+            document.getElementById('codeInput').value = exampleCodes;
+            showSuccessMessage('Exemple de codes chargé !');
+        }
+
+        // Charger un exemple au chargement de la page
+        window.onload = function() {
+            // Charger l'exemple après 1 seconde
+            setTimeout(loadExampleCodes, 1000);
+            
+            // Ajouter un événement pour la touche Entrée
+            document.getElementById('singleCode').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    testSingleCode();
+                }
+            });
+        };
     </script>
 </body>
 </html>
