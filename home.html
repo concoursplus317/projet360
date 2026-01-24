@@ -153,6 +153,58 @@
             color: var(--secondary);
         }
         
+        /* NOUVEAU : Boutons d'action en haut à droite */
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-right: 20px;
+        }
+        
+        .action-btn {
+            padding: 8px 15px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
+        }
+        
+        .action-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+        
+        .action-btn.formation {
+            background-color: var(--secondary);
+        }
+        
+        .action-btn.formation:hover {
+            background-color: var(--secondary-dark);
+        }
+        
+        .action-btn.concours {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+        
+        .action-btn.concours:hover {
+            background-color: #e69a00;
+        }
+        
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+        }
+        
         .nav-links {
             display: flex;
             list-style: none;
@@ -330,7 +382,7 @@
             color: var(--dark);
         }
         
-        /* Faculties Section */
+        /* Facultés Section */
         .faculties {
             background-color: white;
         }
@@ -375,7 +427,8 @@
             font-size: 1.3rem;
         }
         
-        .faculty-president {
+        /* MODIFIÉ : Style pour les ambassadeurs */
+        .ambassador-info {
             display: flex;
             align-items: center;
             margin-top: 15px;
@@ -383,7 +436,7 @@
             border-top: 1px solid rgba(0, 0, 0, 0.1);
         }
         
-        .president-icon {
+        .ambassador-icon {
             width: 40px;
             height: 40px;
             background-color: rgba(26, 35, 126, 0.1);
@@ -395,13 +448,13 @@
             color: var(--primary);
         }
         
-        .president-info h5 {
+        .ambassador-details h5 {
             font-size: 0.9rem;
             color: var(--gray);
             margin-bottom: 3px;
         }
         
-        .president-info p {
+        .ambassador-details p {
             font-size: 0.85rem;
             color: var(--dark);
             font-weight: 600;
@@ -784,6 +837,17 @@
         }
         
         /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .action-buttons {
+                margin-right: 10px;
+            }
+            
+            .action-btn {
+                padding: 8px 12px;
+                font-size: 0.8rem;
+            }
+        }
+        
         @media (max-width: 992px) {
             .hero-content {
                 flex-direction: column;
@@ -801,6 +865,10 @@
             
             .floating-elements {
                 height: 300px;
+            }
+            
+            .action-buttons {
+                display: none;
             }
         }
         
@@ -881,17 +949,35 @@
                 <div class="logo-text">Excel<span>lentia</span> Academia</div>
             </a>
             
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
-            </button>
-            
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#accueil">Accueil</a></li>
-                <li><a href="#facultes">13 Facultés</a></li>
-                <li><a href="#activites">Activités</a></li>
-                <li><a href="#evenements">Événements</a></li>
-                <li><a href="#inscription">Inscription</a></li>
-            </ul>
+            <div class="nav-wrapper">
+                <!-- NOUVEAU : Boutons d'action -->
+                <div class="action-buttons">
+                    <a href="formation.html" class="action-btn formation">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        Participer à la formation
+                    </a>
+                    <a href="concours.html" class="action-btn concours">
+                        <i class="fas fa-trophy"></i>
+                        Concours d'éloquence
+                    </a>
+                    <a href="conferences.html" class="action-btn">
+                        <i class="fas fa-microphone"></i>
+                        Conférences
+                    </a>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#facultes">13 Facultés</a></li>
+                    <li><a href="#activites">Activités</a></li>
+                    <li><a href="#evenements">Événements</a></li>
+                    <li><a href="#inscription">Inscription</a></li>
+                </ul>
+            </div>
         </div>
     </header>
 
@@ -911,7 +997,7 @@
                     
                     <div class="hero-btns">
                         <a href="#inscription" class="btn">Devenir Membre</a>
-                        <a href="#evenements" class="btn btn-outline">Voir les Événements</a>
+                        <a href="#activites" class="btn btn-outline">Voir les Activités</a>
                     </div>
                 </div>
                 <div class="hero-visual">
@@ -923,13 +1009,13 @@
                         </div>
                         <div class="floating-element element-2">
                             <i class="fas fa-trophy floating-icon"></i>
-                            <div class="floating-text">Concours académiques</div>
+                            <div class="floating-text">Concours d'éloquence</div>
                             <small>Inter-facultés</small>
                         </div>
                         <div class="floating-element element-3">
                             <i class="fas fa-users floating-icon"></i>
-                            <div class="floating-text">Accompagnement</div>
-                            <small>Par des experts</small>
+                            <div class="floating-text">Ambassadeurs</div>
+                            <small>Par faculté</small>
                         </div>
                     </div>
                 </div>
@@ -941,7 +1027,7 @@
     <section class="faculties" id="facultes">
         <div class="container">
             <h2 class="section-title">13 Facultés de l'Université de Kinshasa</h2>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 50px; color: var(--gray);">Excellentia Academia existe dans toutes les facultés de l'UNIKIN, avec des programmes adaptés à chaque domaine d'étude et un président de club par faculté.</p>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 50px; color: var(--gray);">Excellentia Academia existe dans toutes les facultés de l'UNIKIN avec des ambassadeurs dédiés dans chaque faculté.</p>
             
             <div class="faculties-grid">
                 <!-- Faculté 1 -->
@@ -952,12 +1038,12 @@
                     <div class="faculty-content">
                         <h3>Faculté de Sciences et Technologies</h3>
                         <p>Laboratoires de recherche, olympiades scientifiques, hackathons et développement de projets innovants en sciences fondamentales et appliquées.</p>
-                        <div class="faculty-president">
-                            <div class="president-icon">
+                        <div class="ambassador-info">
+                            <div class="ambassador-icon">
                                 <i class="fas fa-user-graduate"></i>
                             </div>
-                            <div class="president-info">
-                                <h5>Président du Club</h5>
+                            <div class="ambassador-details">
+                                <h5>Ambassadeur Excellentia Academia</h5>
                                 <p>À désigner</p>
                             </div>
                         </div>
@@ -972,12 +1058,12 @@
                     <div class="faculty-content">
                         <h3>Faculté de Lettres et Sciences Humaines</h3>
                         <p>Ateliers d'écriture créative, clubs de philosophie et de littérature, conférences interdisciplinaires et projets culturels.</p>
-                        <div class="faculty-president">
-                            <div class="president-icon">
+                        <div class="ambassador-info">
+                            <div class="ambassador-icon">
                                 <i class="fas fa-user-graduate"></i>
                             </div>
-                            <div class="president-info">
-                                <h5>Président du Club</h5>
+                            <div class="ambassador-details">
+                                <h5>Ambassadeur Excellentia Academia</h5>
                                 <p>À désigner</p>
                             </div>
                         </div>
@@ -992,12 +1078,12 @@
                     <div class="faculty-content">
                         <h3>Faculté de Sciences Économiques et de Gestion</h3>
                         <p>Clubs d'analyse économique, compétitions de trading, ateliers d'économétrie, simulations boursières et projets de recherche économique.</p>
-                        <div class="faculty-president">
-                            <div class="president-icon">
+                        <div class="ambassador-info">
+                            <div class="ambassador-icon">
                                 <i class="fas fa-user-graduate"></i>
                             </div>
-                            <div class="president-info">
-                                <h5>Président du Club</h5>
+                            <div class="ambassador-details">
+                                <h5>Ambassadeur Excellentia Academia</h5>
                                 <p>À désigner</p>
                             </div>
                         </div>
@@ -1012,12 +1098,12 @@
                     <div class="faculty-content">
                         <h3>Faculté de Sciences Sociales, Administratives et Politiques</h3>
                         <p>Débats politiques, analyses sociologiques, simulations administratives et recherches sur les politiques publiques.</p>
-                        <div class="faculty-president">
-                            <div class="president-icon">
+                        <div class="ambassador-info">
+                            <div class="ambassador-icon">
                                 <i class="fas fa-user-graduate"></i>
                             </div>
-                            <div class="president-info">
-                                <h5>Président du Club</h5>
+                            <div class="ambassador-details">
+                                <h5>Ambassadeur Excellentia Academia</h5>
                                 <p>À désigner</p>
                             </div>
                         </div>
@@ -1032,12 +1118,12 @@
                     <div class="faculty-content">
                         <h3>Faculté de Droit</h3>
                         <p>Clubs de plaidoirie, concours de procès simulés, ateliers de rédaction juridique, moots courts et préparation aux examens du barreau.</p>
-                        <div class="faculty-president">
-                            <div class="president-icon">
+                        <div class="ambassador-info">
+                            <div class="ambassador-icon">
                                 <i class="fas fa-user-graduate"></i>
                             </div>
-                            <div class="president-info">
-                                <h5>Président du Club</h5>
+                            <div class="ambassador-details">
+                                <h5>Ambassadeur Excellentia Academia</h5>
                                 <p>À désigner</p>
                             </div>
                         </div>
@@ -1052,12 +1138,12 @@
                     <div class="faculty-content">
                         <h3>Faculté de Polytechnique</h3>
                         <p>Projets d'ingénierie, compétitions de robotique, ateliers de conception assistée par ordinateur et innovations technologiques.</p>
-                        <div class="faculty-president">
-                            <div class="president-icon">
+                        <div class="ambassador-info">
+                            <div class="ambassador-icon">
                                 <i class="fas fa-user-graduate"></i>
                             </div>
-                            <div class="president-info">
-                                <h5>Président du Club</h5>
+                            <div class="ambassador-details">
+                                <h5>Ambassadeur Excellentia Academia</h5>
                                 <p>À désigner</p>
                             </div>
                         </div>
@@ -1072,12 +1158,12 @@
                     <div class="faculty-content">
                         <h3>Faculté de Sciences Pharmaceutiques</h3>
                         <p>Ateliers de pharmacologie, recherche pharmaceutique, préparation aux concours, stages pratiques et développement de médicaments.</p>
-                        <div class="faculty-president">
-                            <div class="president-icon">
+                        <div class="ambassador-info">
+                            <div class="ambassador-icon">
                                 <i class="fas fa-user-graduate"></i>
                             </div>
-                            <div class="president-info">
-                                <h5>Président du Club</h5>
+                            <div class="ambassador-details">
+                                <h5>Ambassadeur Excellentia Academia</h5>
                                 <p>À désigner</p>
                             </div>
                         </div>
@@ -1092,12 +1178,12 @@
                     <div class="faculty-content">
                         <h3>Faculté de Médecine Dentaire</h3>
                         <p>Ateliers de techniques dentaires, recherches en odontologie, simulations cliniques et innovations en santé bucco-dentaire.</p>
-                        <div class="faculty-president">
-                            <div class="president-icon">
+                        <div class="ambassador-info">
+                            <div class="ambassador-icon">
                                 <i class="fas fa-user-graduate"></i>
                             </div>
-                            <div class="president-info">
-                                <h5>Président du Club</h5>
+                            <div class="ambassador-details">
+                                <h5>Ambassadeur Excellentia Academia</h5>
                                 <p>À désigner</p>
                             </div>
                         </div>
@@ -1112,12 +1198,12 @@
                     <div class="faculty-content">
                         <h3>Faculté de Médecine Vétérinaire</h3>
                         <p>Cliniques vétérinaires étudiantes, recherche en santé animale, ateliers de chirurgie et prévention des zoonoses.</p>
-                        <div class="faculty-president">
-                            <div class="president-icon">
+                        <div class="ambassador-info">
+                            <div class="ambassador-icon">
                                 <i class="fas fa-user-graduate"></i>
                             </div>
-                            <div class="president-info">
-                                <h5>Président du Club</h5>
+                            <div class="ambassador-details">
+                                <h5>Ambassadeur Excellentia Academia</h5>
                                 <p>À désigner</p>
                             </div>
                         </div>
@@ -1132,12 +1218,12 @@
                     <div class="faculty-content">
                         <h3>Faculté de Pétrole, Gaz et Énergies Renouvelables</h3>
                         <p>Projets énergétiques, recherche sur les énergies alternatives, simulations d'exploitation et gestion des ressources énergétiques.</p>
-                        <div class="faculty-president">
-                            <div class="president-icon">
+                        <div class="ambassador-info">
+                            <div class="ambassador-icon">
                                 <i class="fas fa-user-graduate"></i>
                             </div>
-                            <div class="president-info">
-                                <h5>Président du Club</h5>
+                            <div class="ambassador-details">
+                                <h5>Ambassadeur Excellentia Academia</h5>
                                 <p>À désigner</p>
                             </div>
                         </div>
@@ -1152,12 +1238,12 @@
                     <div class="faculty-content">
                         <h3>Faculté de Sciences Agronomiques</h3>
                         <p>Projets agricoles innovants, recherche agronomique, ateliers de transformation des produits et gestion des exploitations.</p>
-                        <div class="faculty-president">
-                            <div class="president-icon">
+                        <div class="ambassador-info">
+                            <div class="ambassador-icon">
                                 <i class="fas fa-user-graduate"></i>
                             </div>
-                            <div class="president-info">
-                                <h5>Président du Club</h5>
+                            <div class="ambassador-details">
+                                <h5>Ambassadeur Excellentia Academia</h5>
                                 <p>À désigner</p>
                             </div>
                         </div>
@@ -1172,12 +1258,12 @@
                     <div class="faculty-content">
                         <h3>Faculté de Médecine</h3>
                         <p>Groupes d'étude avancée, simulations médicales, recherche clinique, préparation aux résidanats et innovations médicales.</p>
-                        <div class="faculty-president">
-                            <div class="president-icon">
+                        <div class="ambassador-info">
+                            <div class="ambassador-icon">
                                 <i class="fas fa-user-graduate"></i>
                             </div>
-                            <div class="president-info">
-                                <h5>Président du Club</h5>
+                            <div class="ambassador-details">
+                                <h5>Ambassadeur Excellentia Academia</h5>
                                 <p>À désigner</p>
                             </div>
                         </div>
@@ -1192,12 +1278,12 @@
                     <div class="faculty-content">
                         <h3>Faculté de Psychologie et Sciences de l'Éducation</h3>
                         <p>Ateliers de psychologie appliquée, recherche en sciences éducatives, interventions psychosociales et innovations pédagogiques.</p>
-                        <div class="faculty-president">
-                            <div class="president-icon">
+                        <div class="ambassador-info">
+                            <div class="ambassador-icon">
                                 <i class="fas fa-user-graduate"></i>
                             </div>
-                            <div class="president-info">
-                                <h5>Président du Club</h5>
+                            <div class="ambassador-details">
+                                <h5>Ambassadeur Excellentia Academia</h5>
                                 <p>À désigner</p>
                             </div>
                         </div>
@@ -1211,12 +1297,12 @@
     <section class="activities" id="activites">
         <div class="container">
             <h2 class="section-title">Nos Activités</h2>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 50px; color: var(--gray);">Découvrez nos programmes récurrents et événements phares conçus pour développer l'excellence académique dans les 13 facultés de l'UNIKIN.</p>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 50px; color: var(--gray);">Découvrez nos programmes récurrents et événements phares organisés par les ambassadeurs dans chaque faculté.</p>
             
             <div class="activities-tabs">
                 <button class="tab-btn active" data-tab="programmes">Programmes récurrents</button>
-                <button class="tab-btn" data-tab="concours">Concours inter-facultés</button>
-                <button class="tab-btn" data-tab="accompagnement">Accompagnement académique</button>
+                <button class="tab-btn" data-tab="concours">Concours d'éloquence</button>
+                <button class="tab-btn" data-tab="formations">Formations</button>
             </div>
             
             <div class="tab-content active" id="programmes">
@@ -1224,18 +1310,18 @@
                     <div class="activity-card">
                         <div class="activity-img" style="background-color: #1a237e;"></div>
                         <div class="activity-content">
-                            <h3>Clubs d'excellence par faculté</h3>
-                            <p>13 clubs spécialisés, un par faculté, pour approfondir les connaissances disciplinaires et préparer les compétitions académiques nationales et internationales.</p>
-                            <a href="#inscription" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.9rem;">Rejoindre mon club</a>
+                            <h3>Ambassadeurs par faculté</h3>
+                            <p>Un ambassadeur Excellentia Academia dans chaque faculté pour coordonner les activités et représenter la structure. Ils organisent des événements adaptés à leur domaine d'étude.</p>
+                            <a href="#facultes" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.9rem;">Voir les ambassadeurs</a>
                         </div>
                     </div>
                     
                     <div class="activity-card">
                         <div class="activity-img" style="background-color: #d32f2f;"></div>
                         <div class="activity-content">
-                            <h3>Ateliers d'écriture académique</h3>
-                            <p>Formations à la rédaction scientifique, méthodologie de recherche, et techniques de rédaction de mémoires, thèses et articles scientifiques.</p>
-                            <a href="#inscription" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.9rem;">S'inscrire aux ateliers</a>
+                            <h3>Conférences mensuelles</h3>
+                            <p>Conférences organisées dans chaque faculté avec des experts du domaine. Thèmes variés allant de l'excellence académique aux opportunités professionnelles.</p>
+                            <a href="conferences.html" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.9rem;">Voir le programme</a>
                         </div>
                     </div>
                     
@@ -1244,7 +1330,7 @@
                         <div class="activity-content">
                             <h3>Formations soft skills</h3>
                             <p>Développement des compétences transversales : prise de parole, leadership, gestion du temps, rédaction de CV, entretiens et intelligence émotionnelle.</p>
-                            <a href="#inscription" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.9rem;">Participer</a>
+                            <a href="formation.html" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.9rem;">Participer</a>
                         </div>
                     </div>
                 </div>
@@ -1257,47 +1343,47 @@
                         <div class="activity-content">
                             <h3>Concours d'éloquence inter-facultés</h3>
                             <p>Compétition d'art oratoire entre les 13 facultés sur des sujets d'actualité et académiques. Prix pour les meilleurs orateurs de chaque faculté.</p>
-                            <a href="#evenements" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.9rem;">Voir calendrier</a>
+                            <a href="concours.html" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.9rem;">En savoir plus</a>
                         </div>
                     </div>
                     
                     <div class="activity-card">
                         <div class="activity-img" style="background-color: #f57c00;"></div>
                         <div class="activity-content">
-                            <h3>Olympiades scientifiques UNIKIN</h3>
-                            <p>Compétitions de résolution de problèmes complexes en mathématiques, physique, chimie, biologie et informatique entre facultés scientifiques.</p>
-                            <a href="#evenements" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.9rem;">Voir calendrier</a>
+                            <h3>Préparation au concours</h3>
+                            <p>Ateliers de préparation spécifiques organisés par les ambassadeurs dans chaque faculté. Techniques de prise de parole, construction d'argumentation, gestion du stress.</p>
+                            <a href="formation.html" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.9rem;">S'inscrire à la préparation</a>
                         </div>
                     </div>
                     
                     <div class="activity-card">
                         <div class="activity-img" style="background-color: #00796b;"></div>
                         <div class="activity-content">
-                            <h3>Quiz académique des 13 facultés</h3>
-                            <p>Jeu-questionnaire couvrant tous les domaines de connaissance. Équipes mixtes inter-facultés encouragées pour favoriser l'interdisciplinarité.</p>
-                            <a href="#evenements" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.9rem;">Voir calendrier</a>
+                            <h3>Finale du Concours d'Éloquence</h3>
+                            <p>Événement phare de l'année avec la participation des meilleurs orateurs de chaque faculté. Jury composé d'experts en communication et personnalités publiques.</p>
+                            <a href="concours.html" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.9rem;">Voir le calendrier</a>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <div class="tab-content" id="accompagnement">
+            <div class="tab-content" id="formations">
                 <div class="activity-grid">
                     <div class="activity-card">
                         <div class="activity-img" style="background-color: #1a237e;"></div>
                         <div class="activity-content">
-                            <h3>Camp de préparation aux examens</h3>
-                            <p>Sessions intensives de révision avant les examens avec professeurs et étudiants mentors dans chaque faculté. Méthodologie de travail adaptée.</p>
-                            <a href="#inscription" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.9rem;">S'inscrire au camp</a>
+                            <h3>Formation à l'éloquence</h3>
+                            <p>Programme complet de formation à l'art oratoire : techniques vocales, langage corporel, construction du discours, gestion du trac et improvisation.</p>
+                            <a href="formation.html" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.9rem;">Participer à la formation</a>
                         </div>
                     </div>
                     
                     <div class="activity-card">
                         <div class="activity-img" style="background-color: #d32f2f;"></div>
                         <div class="activity-content">
-                            <h3>Mentorat par les anciens et experts</h3>
-                            <p>Accompagnement personnalisé par des diplômés excellents et professionnels dans chaque domaine pour guider les projets académiques et professionnels.</p>
-                            <a href="#inscription" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.9rem;">Demander un mentor</a>
+                            <h3>Ateliers d'écriture académique</h3>
+                            <p>Formations à la rédaction scientifique, méthodologie de recherche, et techniques de rédaction de mémoires, thèses et articles scientifiques.</p>
+                            <a href="formation.html" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.9rem;">S'inscrire aux ateliers</a>
                         </div>
                     </div>
                     
@@ -1306,7 +1392,7 @@
                         <div class="activity-content">
                             <h3>Préparation TFC/Mémoire/Thèse</h3>
                             <p>Ateliers spécialisés pour la rédaction du Travail de Fin de Cycle, mémoire ou thèse, avec suivi individualisé par des experts disciplinaires.</p>
-                            <a href="#inscription" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.9rem;">Réserver une session</a>
+                            <a href="formation.html" class="btn" style="margin-top: 15px; padding: 8px 20px; font-size: 0.9rem;">Réserver une session</a>
                         </div>
                     </div>
                 </div>
@@ -1318,7 +1404,7 @@
     <section class="events" id="evenements">
         <div class="container">
             <h2 class="section-title">Événements à Venir</h2>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto 50px; color: var(--gray);">Ne manquez pas nos événements phares qui rassemblent l'élite académique des 13 facultés de l'Université de Kinshasa.</p>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 50px; color: var(--gray);">Ne manquez pas nos événements phares organisés par les ambassadeurs dans les 13 facultés de l'Université de Kinshasa.</p>
             
             <div class="events-grid">
                 <div class="event-card">
@@ -1327,13 +1413,13 @@
                         <div class="month">Octobre</div>
                     </div>
                     <div class="event-content">
-                        <h3>Semaine de l'Excellence UNIKIN</h3>
-                        <p>Exposition des projets étudiants des 13 facultés, panels de discussion avec des experts internationaux, et cérémonie de remise des prix d'excellence académique.</p>
+                        <h3>Lancement des formations à l'éloquence</h3>
+                        <p>Session inaugurale de formation à l'art oratoire organisée par les ambassadeurs dans chaque faculté. Inscriptions ouvertes à tous les étudiants.</p>
                         <div class="event-meta">
-                            <span><i class="far fa-clock"></i> 9h-18h</span>
-                            <span><i class="fas fa-map-marker-alt"></i> Campus Principal UNIKIN</span>
+                            <span><i class="far fa-clock"></i> 14h-16h</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Par faculté</span>
                         </div>
-                        <a href="#inscription" class="btn" style="margin-top: 20px; padding: 10px 25px; font-size: 0.9rem;">S'inscrire</a>
+                        <a href="formation.html" class="btn" style="margin-top: 20px; padding: 10px 25px; font-size: 0.9rem;">Participer</a>
                     </div>
                 </div>
                 
@@ -1343,13 +1429,13 @@
                         <div class="month">Octobre</div>
                     </div>
                     <div class="event-content">
-                        <h3>Finale du Concours d'Éloquence</h3>
-                        <p>Finale inter-facultés du concours d'art oratoire avec participation des 13 facultés. Thème : "L'excellence académique au service du développement de la RDC".</p>
+                        <h3>Conférence "L'excellence académique"</h3>
+                        <p>Conférence organisée par les ambassadeurs de la Faculté de Droit avec des intervenants prestigieux sur le thème de l'excellence dans les études supérieures.</p>
                         <div class="event-meta">
                             <span><i class="far fa-clock"></i> 14h-17h</span>
-                            <span><i class="fas fa-map-marker-alt"></i> Amphithéâtre Kwame Nkrumah</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Faculté de Droit</span>
                         </div>
-                        <a href="#inscription" class="btn" style="margin-top: 20px; padding: 10px 25px; font-size: 0.9rem;">S'inscrire</a>
+                        <a href="conferences.html" class="btn" style="margin-top: 20px; padding: 10px 25px; font-size: 0.9rem;">S'inscrire</a>
                     </div>
                 </div>
                 
@@ -1359,13 +1445,13 @@
                         <div class="month">Novembre</div>
                     </div>
                     <div class="event-content">
-                        <h3>Camp de Préparation aux Examens</h3>
-                        <p>Session intensive de révision dans les 13 facultés avec les meilleurs professeurs et étudiants mentors. Méthodologie adaptée à chaque discipline.</p>
+                        <h3>Finale du Concours d'Éloquence</h3>
+                        <p>Finale inter-facultés du concours d'art oratoire avec participation des 13 facultés. Thème : "L'excellence académique au service du développement de la RDC".</p>
                         <div class="event-meta">
-                            <span><i class="far fa-clock"></i> 8h-20h</span>
-                            <span><i class="fas fa-map-marker-alt"></i> Bibliothèque Centrale UNIKIN</span>
+                            <span><i class="far fa-clock"></i> 10h-17h</span>
+                            <span><i class="fas fa-map-marker-alt"></i> Amphithéâtre Kwame Nkrumah</span>
                         </div>
-                        <a href="#inscription" class="btn" style="margin-top: 20px; padding: 10px 25px; font-size: 0.9rem;">S'inscrire</a>
+                        <a href="concours.html" class="btn" style="margin-top: 20px; padding: 10px 25px; font-size: 0.9rem;">S'inscrire</a>
                     </div>
                 </div>
             </div>
@@ -1450,16 +1536,16 @@
                     
                     <div class="form-row">
                         <div class="form-group">
-                            <label for="interests">Centres d'intérêt *</label>
+                            <label for="interests">Activités d'intérêt *</label>
                             <select id="interests" class="form-control" multiple required>
-                                <option value="clubs">Club d'excellence de ma faculté</option>
-                                <option value="concours">Concours académiques inter-facultés</option>
+                                <option value="concours">Concours d'éloquence</option>
+                                <option value="formation">Formation à l'éloquence</option>
+                                <option value="conferences">Conférences</option>
+                                <option value="ambassadeur">Devenir ambassadeur</option>
                                 <option value="ateliers">Ateliers d'écriture et méthodologie</option>
                                 <option value="softskills">Formations soft skills</option>
                                 <option value="mentorat">Programme de mentorat</option>
-                                <option value="entrepreneuriat">Entrepreneuriat étudiant</option>
                                 <option value="recherche">Recherche académique et scientifique</option>
-                                <option value="international">Programmes internationaux et échanges</option>
                             </select>
                             <small style="color: var(--gray);">Maintenez Ctrl (ou Cmd) pour sélectionner plusieurs options</small>
                         </div>
@@ -1625,7 +1711,7 @@
             console.log('Formulaire soumis:', formData);
             
             // Message de succès
-            alert('Merci pour votre inscription à Excellentia Academia ! Votre candidature a été soumise avec succès. Le président du club de votre faculté vous contactera bientôt.');
+            alert('Merci pour votre inscription à Excellentia Academia ! Votre candidature a été soumise avec succès. L\'ambassadeur de votre faculté vous contactera bientôt.');
             
             // Réinitialisation du formulaire
             registrationForm.reset();
